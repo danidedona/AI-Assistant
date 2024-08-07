@@ -132,15 +132,22 @@ export default function Home() {
           ))}
           <div ref={messagesEndRef} />
         </Stack>
+
         <Stack direction={"row"} spacing={2}>
           <TextField
             label="Message"
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyPress={handleKeyPress}
+            disabled={isLoading}
           />
-          <Button variant="contained" onClick={sendMessage}>
-            Send
+          <Button
+            variant="contained"
+            onClick={sendMessage}
+            disabled={isLoading}
+          >
+            {isLoading ? "Sending..." : "Send"}
           </Button>
         </Stack>
       </Stack>
